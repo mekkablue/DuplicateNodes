@@ -15,7 +15,7 @@ Select one or more on-curve nodes in Edit view and run the filter.
 
 # License
 
-Copyright 2022 Rainer Erich Scheichelbauer (@mekkablue). Based on template code by Georg Seifert (@schriftgestalt) and Jan Gerner (@yanone). Help for the conversion into the plug-in by Rainer Erich Scheichelbauer (@mekkablue).
+Copyright 2022 Rainer Erich Scheichelbauer (@mekkablue). Based on template code by Georg Seifert (@schriftgestalt) and Jan Gerner (@yanone).
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
