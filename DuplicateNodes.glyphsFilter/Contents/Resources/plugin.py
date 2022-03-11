@@ -39,6 +39,7 @@ class DuplicateNodes(FilterWithoutDialog):
 				if thisNode.selected and thisNode.type != OFFCURVE:
 					newNode = GSNode()
 					newNode.position = thisNode.position
+					newNode.smooth = thisNode.smooth
 					thisPath.nodes.insert(i+1, newNode)
 
 	@objc.python_method
