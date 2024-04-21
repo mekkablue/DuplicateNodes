@@ -26,6 +26,7 @@ class DuplicateNodes(FilterWithoutDialog):
 			'fr': 'Dupliquer nœuds',
 			'es': 'Duplicar nodos',
 			'pt': 'Duplicar nodos',
+			'it': 'Duplica nodi',
 			# 'jp': '私のフィルター',
 			# 'ko': '내 필터',
 			# 'zh': '我的过滤器',
