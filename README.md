@@ -1,12 +1,12 @@
 # DuplicateNodes
 
-*Filter > Duplicate Nodes* (*en:* Duplicate Nodes, *de:* Punkte verdoppeln, *fr:* Dupliquer nœuds, *es:* Duplicar nodos, *pt:* Duplicar nodos) is a Glyphs.app filter for duplicating selected on-curve nodes in place.
+*Filter > Duplicate Nodes* (*en:* Duplicate Nodes, *de:* Punkte verdoppeln, *fr:* Dupliquer nœuds, *es:* Duplicar nodos, *pt:* Duplicar nodos, *it:* Duplica nodi) is a Glyphs.app filter for duplicating selected on-curve nodes in place.
 
 ![Duplicate Nodes](DuplicateNodes.png)
  
 ## Usage
 
-Select one or more on-curve nodes in Edit view and run the filter.
+Select one or more on-curve nodes in Edit view and run the filter. Hold down Opt to duplicate the same nodes in all (compatible) masters.
  
 ## Installation
 

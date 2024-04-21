@@ -15,6 +15,7 @@ from __future__ import division, print_function, unicode_literals
 import objc
 from GlyphsApp import *
 from GlyphsApp.plugins import *
+from AppKit import NSEvent
 
 class DuplicateNodes(FilterWithoutDialog):
 	
@@ -32,16 +33,35 @@ class DuplicateNodes(FilterWithoutDialog):
 			# 'zh': '我的过滤器',
 			})
 
+
+
 	@objc.python_method
 	def filter(self, thisLayer, inEditView, customParameters):
-		for thisPath in thisLayer.paths:
-			for i in reversed(range(len(thisPath.nodes))):
-				thisNode = thisPath.nodes[i]
-				if thisNode.selected and thisNode.type != OFFCURVE:
+		optionKey = 524288
+		optionKeyPressed = NSEvent.modifierFlags() & optionKey == optionKey
+		
+		selectedIndexes = []
+		for pathIndex, thisPath in enumerate(thisLayer.paths):
+			for nodeIndex, thisNode in enumerate(thisPath.nodes):
+				if thisNode.selected:
+					selectedIndexes.append( (pathIndex, nodeIndex) )
+		
+		appliedLayers = [thisLayer]
+		if optionKeyPressed:
+			thisGlyph = thisLayer.parent
+			for thatLayer in thisGlyph.layers:
+				if thatLayer != thisLayer and thisLayer.compareString() == thatLayer.compareString():
+					appliedLayers.append(thatLayer)
+		
+		for thisLayer in appliedLayers:
+			for pathIndex, nodeIndex in reversed(selectedIndexes):
+				thisPath = thisLayer.paths[pathIndex]
+				thisNode = thisPath.nodes[nodeIndex]
+				if thisNode.type != OFFCURVE:
 					newNode = GSNode()
 					newNode.position = thisNode.position
 					newNode.smooth = thisNode.smooth
-					thisPath.nodes.insert(i+1, newNode)
+					thisPath.nodes.insert(nodeIndex+1, newNode)
 
 	@objc.python_method
 	def __file__(self):
