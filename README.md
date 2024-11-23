@@ -6,7 +6,11 @@
  
 ## Usage
 
-Select one or more on-curve nodes in Edit view and run the filter. Hold down Opt to duplicate the same nodes in all (compatible) masters.
+Select one or more on-curve nodes in Edit view and run the filter. 
+
+Hold down **Opt** to duplicate the same nodes in all (compatible) masters. 
+
+Hold down **Shift** to add the new nodes not exactly on top, but with 1u distance. Careful: will change the following segment slightly, i.e., give it a small inclination.
  
 ## Installation
 
