@@ -13,15 +13,15 @@
 	<key>CFBundleName</key>
 	<string>DuplicateNodes</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.2</string> <!-- 1.0 -->
+	<string>1.1</string> <!-- 1.0 -->
 	<key>CFBundleVersion</key>
-	<string>3</string> <!-- 123 -->
+	<string>4</string> <!-- 123 -->
 	<key>UpdateFeedURL</key>
 	<string>https://raw.githubusercontent.com/mekkablue/DuplicateNodes/master/DuplicateNodes.glyphsFilter/Contents/Info.plist</string>
 	<key>productPageURL</key>
 	<string>https://github.com/mekkablue/DuplicateNodes</string>
 	<key>productReleaseNotes</key>
-	<string>Added: hold down OPT to apply to all (compatible) layers.</string>
+	<string>Added: hold down OPT to apply to all (compatible) layers, hold down SHIFT to add the new node with a distance of 1u.</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright, Rainer Erich Scheichelbauer, 2022</string>
 	<key>NSPrincipalClass</key>

@@ -12,10 +12,30 @@
 ###########################################################################################################
 
 from __future__ import division, print_function, unicode_literals
-import objc
+import objc, math
 from GlyphsApp import *
 from GlyphsApp.plugins import *
-from AppKit import NSEvent
+from AppKit import NSEvent, NSPoint
+
+def unitVector(B, A):
+	x = A.x - B.x
+	y = A.y - B.y
+	length = math.sqrt(x**2 + y**2)
+	return (x / length, y / length)
+
+
+def offsetFrom3Points(n1, n2, n3):
+	vectors = (
+		unitVector(n1, n2),
+		unitVector(n2, n3),
+	)
+	averageVector = NSPoint(
+		sum([v[0] for v in vectors]) / len(vectors),
+		sum([v[1] for v in vectors]) / len(vectors)
+	)
+	roundedCoordinates = [round(c) for c in unitVector(NSPoint(), averageVector)]
+	return NSPoint(*roundedCoordinates)
+	
 
 class DuplicateNodes(FilterWithoutDialog):
 	
@@ -38,7 +58,9 @@ class DuplicateNodes(FilterWithoutDialog):
 	@objc.python_method
 	def filter(self, thisLayer, inEditView, customParameters):
 		optionKey = 524288
+		shiftKey = 131072
 		optionKeyPressed = NSEvent.modifierFlags() & optionKey == optionKey
+		shiftKeyPressed = NSEvent.modifierFlags() & shiftKey == shiftKey
 		
 		selectedIndexes = []
 		for pathIndex, thisPath in enumerate(thisLayer.paths):
@@ -59,7 +81,18 @@ class DuplicateNodes(FilterWithoutDialog):
 				thisNode = thisPath.nodes[nodeIndex]
 				if thisNode.type != OFFCURVE:
 					newNode = GSNode()
-					newNode.position = thisNode.position
+					if shiftKeyPressed:
+						offset = offsetFrom3Points(
+							thisNode.prevNode.position,
+							thisNode.position,
+							thisNode.nextNode.position,
+							)
+						newNode.position = NSPoint(
+							thisNode.position.x + offset.x,
+							thisNode.position.y + offset.y,
+							)
+					else:
+						newNode.position = thisNode.position
 					newNode.smooth = thisNode.smooth
 					thisPath.nodes.insert(nodeIndex+1, newNode)
 
